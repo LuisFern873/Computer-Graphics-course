@@ -47,50 +47,51 @@ def marching_cubes(function, output_file, min_x, min_y, min_z, max_x, max_y, max
     ax.set_zlim(0, abs(min_z) + abs(max_z))
     plt.savefig(output_file, format='eps')
     plt.show()
+  
+
+if __name__ == "__main__":
     
-
-
-example_json = {
-  "op": "union",
-  "function": "",
-  "childs": [
-    {
-      "op": "",
-      "function": "(x-2)^2 + (y-3)^2 + (z-3)^2 - 4^2",
-      "childs": []
-    },
-    {
-      "op": "",
-      "function": "(x+1)^2 + (y-3)^2 + (z-3)^2 - 4^2",
-      "childs": []
+    example_json = {
+      "op": "union",
+      "function": "",
+      "childs": [
+        {
+          "op": "",
+          "function": "(x-2)^2 + (y-3)^2 + (z-3)^2 - 4^2",
+          "childs": []
+        },
+        {
+          "op": "",
+          "function": "(x+1)^2 + (y-3)^2 + (z-3)^2 - 4^2",
+          "childs": []
+        }
+      ]
     }
-  ]
-}
 
-# example_json = lambda x, y, z : np.logical_or.reduce([
-#     (x-2)**2 + (y-3)**2 + (z-3)**2 - 4**2 <= 0, 
-#     (x+1)**2 + (y-3)**2 + (z-3)**2 - 4**2 <= 0
-# ])
+    # example_json = lambda x, y, z : np.logical_or.reduce([
+    #     (x-2)**2 + (y-3)**2 + (z-3)**2 - 4**2 <= 0, 
+    #     (x+1)**2 + (y-3)**2 + (z-3)**2 - 4**2 <= 0
+    # ])
 
-marching_cubes(
-    example_json,
-    'example-marching-cubes-1.eps',
+    marching_cubes(
+        example_json,
+        'example-marching-cubes-1.eps',
+        -5, -5, -5, 6, 6, 6,
+        0.1
+    )
+
+    marching_cubes(
+    # sphere of radius 1 centered at (2, 2, 2)
+    {"op":"", "function":"(x-2)^2+(y-2)^2+(z-2)^2-1", "childs":[]},
+    'example-marching-cubes-2.eps',
     -5, -5, -5, 6, 6, 6,
-    0.1
-)
+    0.1)
 
-marching_cubes(
-# sphere of radius 1 centered at (2, 2, 2)
-{"op":"", "function":"(x-2)^2+(y-2)^2+(z-2)^2-1", "childs":[]},
-'example-marching-cubes-2.eps',
--5, -5, -5, 6, 6, 6,
-0.1)
-
-marching_cubes(
-{"op":"union", "function":"", "childs":[
-{"op":"", "function":"(x-2)^2+(y-2)^2+(z-2)^2-1", "childs":[]},
-{"op":"", "function":"(x-4)^2+(y-2)^2+(z-2)^2-1", "childs":[]}
-]},
-'example-marching-cubes-3.eps',
--5, -5, -5, 6, 6, 6,
-0.1)
+    marching_cubes(
+    {"op":"union", "function":"", "childs":[
+    {"op":"", "function":"(x-2)^2+(y-2)^2+(z-2)^2-1", "childs":[]},
+    {"op":"", "function":"(x-4)^2+(y-2)^2+(z-2)^2-1", "childs":[]}
+    ]},
+    'example-marching-cubes-3.eps',
+    -5, -5, -5, 6, 6, 6,
+    0.1)
