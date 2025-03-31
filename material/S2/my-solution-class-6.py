@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 
 # Exercises 1, 2, 3
-
 lenna = cv2.imread('lenna.png')
 grid = cv2.imread('colors.png')
 

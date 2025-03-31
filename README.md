@@ -2,4 +2,5 @@
 
 
 [Canvas modules 2024-1](https://utec.instructure.com/courses/13955/modules)
+[Canvas modules 2025-1](https://utec.instructure.com/courses/17648/modules)
 
